@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 
 if (env('JOIN_BETA') == true) {
-    $userver = 'https://beta.linkstack.org/';
+    $userver = 'https://beta.liinkmee.org/';
 } else {
-    $userver = 'https://update.linkstack.org/';
+    $userver = 'https://update.liinkmee.org/';
 }
 
 return [

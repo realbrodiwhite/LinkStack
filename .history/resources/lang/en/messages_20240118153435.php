@@ -20,7 +20,7 @@ return [
     'by' => 'by',
 
     'HOME.MESSAGE' => '
-    <p>Take control of your online presence with&nbsp;<a href="https://linkstack.org/"><strong>LiinkMee</strong></a>
+    <p>Take control of your online presence with&nbsp;<a href="https://liinkmee.org/"><strong>LiinkMee</strong></a>
      the privacy-focused, open-source <strong>link management platform</strong>. Create a customizable profile page to manage <strong>
      all your important links in one convenient location</strong> and give your audience a seamless browsing experience.</p>
      ',
@@ -688,7 +688,7 @@ return [
     'MAIL_FROM_ADDRESS.title' => 'MAIL_FROM_ADDRESS',
     'MAIL_FROM_ADDRESS.description' => 'MAIL_FROM_ADDRESS',
     'JOIN_BETA.title' => 'Join the Beta Program',
-    'JOIN_BETA.description' => 'Enables the use of beta versions when updating. Read more about this <a target=\'_blank\' href=\'https://linkstack.org/b\'>here</a>.',
+    'JOIN_BETA.description' => 'Enables the use of beta versions when updating. Read more about this <a target=\'_blank\' href=\'https://liinkmee.org/b\'>here</a>.',
     'SKIP_UPDATE_BACKUP.title' => 'Skip update backups',
     'SKIP_UPDATE_BACKUP.description' => 'Skips backups when updating. This option is recommended to be disabled at all times, <br>but it may cause errors in some configurations.',
     'CUSTOM_META_TAGS.title' => 'Enable custom meta tags',
@@ -702,7 +702,7 @@ return [
     'ENABLE_THEME_UPDATER.title' => 'Enable Theme Updater',
     'ENABLE_THEME_UPDATER.description' => 'Determines if the theme updater should be active.',
     'ENABLE_SOCIAL_LOGIN.title' => 'Enable social login',
-    'ENABLE_SOCIAL_LOGIN.description' => 'Enables social login. This option requires further setup. Read more about this <a target=\'_blank\' href=\'https://linkstack.org/social-login\'>here</a>.',
+    'ENABLE_SOCIAL_LOGIN.description' => 'Enables social login. This option requires further setup. Read more about this <a target=\'_blank\' href=\'https://liinkmee.org/social-login\'>here</a>.',
     'USE_THEME_PREVIEW_IFRAME.title' => 'Use iframe as theme preview',
     'USE_THEME_PREVIEW_IFRAME.description' => 'Determines if an internal iframe should be used as the preview for them theme page.',
     'FORCE_ROUTE_HTTPS.title' => 'Redirect all pages to HTTPS',
@@ -978,7 +978,7 @@ return [
     | LiinkMee (Links) Page
     |--------------------------------------------------------------------------
     |
-    | resources/views/liinkmee/linkstack.blade.php
+    | resources/views/liinkmee/liinkmee.blade.php
     |
     */
 

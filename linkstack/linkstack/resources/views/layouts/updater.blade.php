@@ -10,7 +10,7 @@
 
 @stack('updater-head')
 
-  <title>{{__('messages.Update LinkStack')}}</title>
+  <title>{{__('messages.Update Liinkmee')}}</title>
   @include('layouts.fonts') 
   <link rel="stylesheet" href="{{ asset('assets/liinkmee/css/normalize.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/liinkmee/css/brands.css') }}">

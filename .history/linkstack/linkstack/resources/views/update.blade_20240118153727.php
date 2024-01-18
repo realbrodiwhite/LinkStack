@@ -4,7 +4,7 @@
 <div class="container">
 
 <?php // Requests newest version from server and sets it as variable
-			   		$Vgit = external_file_get_contents("https://version.linkstack.org/");
+			   		$Vgit = external_file_get_contents("https://version.liinkmee.org/");
 
 				       // Requests current version from the local version file and sets it as variable
                   $Vlocal = file_get_contents(base_path("version.json"));
@@ -20,7 +20,7 @@
         <h1>{{__('messages.Updater')}}</h1>
         @if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
         @if(env('JOIN_BETA') === true)
-        <p><?php echo __('messages.Latest beta version')."= " . external_file_get_contents("https://beta.linkstack.org/vbeta.json"); ?></p>
+        <p><?php echo __('messages.Latest beta version')."= " . external_file_get_contents("https://beta.liinkmee.org/vbeta.json"); ?></p>
         <p><?php  if(file_exists(base_path("vbeta.json"))) {echo __('messages.Installed beta version')."= " . file_get_contents(base_path("vbeta.json"));} else {echo __('messages.Installed beta version')."= ".__('messages.none');}  ?></p>
         <p><?php  if($Vgit > $Vlocal) {echo __('messages.You need to update to the latest mainline release');} else {echo __("messages.You’re running the latest mainline release");}  ?></p>
         @else
@@ -29,11 +29,11 @@
         @endif
         <br><div class="row">
         &ensp;<a class="btn" href="{{url()->current()}}/?updating-windows"><button><i class="fa-solid fa-user-gear btn"></i> {{__('messages.Update automatically')}}</button></a>&ensp;
-        &ensp;<a class="btn" href="https://linkstack.org/update" target="_blank"><button><i class="fa-solid fa-download btn"></i> {{__('messages.Update manually')}}</button></a>&ensp;
+        &ensp;<a class="btn" href="https://liinkmee.org/update" target="_blank"><button><i class="fa-solid fa-download btn"></i> {{__('messages.Update manually')}}</button></a>&ensp;
         </div>
         @else
         @if(env('JOIN_BETA') === true)
-        <p><?php echo __('messages.Latest beta version')."= " . external_file_get_contents("https://beta.linkstack.org/vbeta.json"); ?></p>
+        <p><?php echo __('messages.Latest beta version')."= " . external_file_get_contents("https://beta.liinkmee.org/vbeta.json"); ?></p>
         <p><?php  if(file_exists(base_path("vbeta.json"))) {echo __('messages.Installed beta version')."= " . file_get_contents(base_path("vbeta.json"));} else {echo __('messages.Installed beta version')."= ".__('messages.none');}  ?></p>
         <p><?php  if($Vgit > $Vlocal) {echo __('messages.You need to update to the latest mainline release');} else {echo __("messages.You’re running the latest mainline release");}  ?></p>
         @else
@@ -46,7 +46,7 @@
             @else
             &ensp;<a class="btn" href="{{url()->current()}}/?backup"><button><i class="fa-solid fa-user-gear btn"></i> {{__('messages.Update automatically')}}</button></a>&ensp;
             @endif
-        &ensp;<a class="btn" href="https://linkstack.org/update" target="_blank"><button><i class="fa-solid fa-download btn"></i> {{__('messages.Update manually')}}</button></a>&ensp;
+        &ensp;<a class="btn" href="https://liinkmee.org/update" target="_blank"><button><i class="fa-solid fa-download btn"></i> {{__('messages.Update manually')}}</button></a>&ensp;
         </div>
         @endif
       
@@ -71,12 +71,12 @@
 
 // Download the zip file
 
-$latestversion = trim(external_file_get_contents("https://version.linkstack.org/"));
+$latestversion = trim(external_file_get_contents("https://version.liinkmee.org/"));
 
 if(env('JOIN_BETA') === true){
-   $fileUrl = 'https://beta.linkstack.org/'. $latestversion . '.zip';
+   $fileUrl = 'https://beta.liinkmee.org/'. $latestversion . '.zip';
 } else {
-   $fileUrl = 'https://update.linkstack.org/'. $latestversion . '.zip';
+   $fileUrl = 'https://update.liinkmee.org/'. $latestversion . '.zip';
 }
 
 $curl = curl_init();
@@ -134,7 +134,7 @@ exit(); ?>
         
         <?php // Get update preperation script from GitHub
         try {
-        $file = external_file_get_contents('https://pre-update.linkstack.org');
+        $file = external_file_get_contents('https://pre-update.liinkmee.org');
         $newfile = base_path('resources/views/components/pre-update.blade.php');
         file_put_contents($newfile, $file);
         } catch (exception $e) {}
@@ -212,7 +212,7 @@ if($debug === true){
         </div>
         <h1>{{__('messages.Success!')}}</h1>
         @if(env('JOIN_BETA') === true)
-        <p><?php echo __('messages.Latest beta version')."= " . external_file_get_contents("https://beta.linkstack.org/vbeta.json"); ?></p>
+        <p><?php echo __('messages.Latest beta version')."= " . external_file_get_contents("https://beta.liinkmee.org/vbeta.json"); ?></p>
         <p><?php  if(file_exists(base_path("vbeta.json"))) {echo __('messages.Installed beta version')."= " . file_get_contents(base_path("vbeta.json"));} else {echo __('messages.Installed beta version')."= ".__('messages.none');}  ?></p>
         <p><?php  if($Vgit > $Vlocal) {echo __('messages.You need to update to the latest mainline release');} else {echo __("messages.You’re running the latest mainline release");}  ?></p>
         @else

@@ -147,7 +147,7 @@
                         <div class="d-flex flex-column flex-md-row align-items-md-center">
                             <button type="submit" class="btn btn-primary me-md-3 mb-3 mb-md-0">{{__('messages.Upload themes')}}</button>
                             <button class="btn btn-danger me-md-3 mb-3 mb-md-0 delete-themes" title="Delete themes"><a href="{{ url('/admin/theme') }}" class="text-white">{{__('messages.Delete themes')}}</a></button>
-                            <button class="btn btn-info download-themes" title="Download more themes"><a href="https://linkstack.org/themes/" target="_blank" class="text-white">{{__('messages.Download themes')}}</a></button>
+                            <button class="btn btn-info download-themes" title="Download more themes"><a href="https://liinkmee.org/themes/" target="_blank" class="text-white">{{__('messages.Download themes')}}</a></button>
                           </div>
                     </form>
                     </details>

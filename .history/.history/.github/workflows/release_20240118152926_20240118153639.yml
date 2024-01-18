@@ -31,8 +31,8 @@ jobs:
           sudo update-alternatives --set php /usr/bin/php8.0
 
           cd /tmp
-          mkdir linkstack
-          cd linkstack
+          mkdir liinkmee
+          cd liinkmee
 
           TAG_VERSION="${GITHUB_REF##*/}"
           version=${TAG_VERSION#"v"}
@@ -41,14 +41,14 @@ jobs:
 
           git clone https://github.com/LiinkMeeOrg/LiinkMee/
 
-          mkdir linkstack
-          mv LinkStack liinkmee/linkstack
+          mkdir liinkmee
+          mv Liinkmee liinkmee/liinkmee
 
-          cd linkstack
+          cd liinkmee
 
           curl -o README.md https://gist.githubusercontent.com/JulianPrieber/7a3f18a404c524d59c147a8d4f1ad33c/raw/3008f0893da2effaee56b99ee8b956fa533d9b07/README.md
 
-          cd linkstack
+          cd liinkmee
 
           cp "../../version.json" "version.json"
           
@@ -64,7 +64,7 @@ jobs:
           rm README.md
           cd ../../
           
-          rsync -av liinkmee/linkstack update
+          rsync -av liinkmee/liinkmee update
 
           cd update
           
@@ -86,16 +86,16 @@ jobs:
 
           touch /tmp/liinkmee/liinkmee/liinkmee/storage/app/ISINSTALLED
 
-          cd /tmp/linkstack
+          cd /tmp/liinkmee
           
           cd "$version"
           zip -r "$version.zip" *
           mv "$version.zip" ../
           cd ..
 
-          cd linkstack
-          zip -r "linkstack.zip" *
-          mv linkstack.zip ../
+          cd liinkmee
+          zip -r "liinkmee.zip" *
+          mv liinkmee.zip ../
           cd ..
 
           cd update
@@ -113,7 +113,7 @@ jobs:
             exit 1
           else
             echo "GitHub API key found."
-            cd /tmp/linkstack
+            cd /tmp/liinkmee
 
             # Get the repository name in the format 'OWNER/REPO'
             REPO_NAME="LiinkMeeOrg/LiinkMee"
@@ -121,8 +121,8 @@ jobs:
             # Upload 'update.zip'
             gh release upload "${GITHUB_REF##*/}" "update.zip" --clobber -R "$REPO_NAME"
 
-            # Upload 'linkstack.zip'
-            gh release upload "${GITHUB_REF##*/}" "linkstack.zip" --clobber -R "$REPO_NAME"
+            # Upload 'liinkmee.zip'
+            gh release upload "${GITHUB_REF##*/}" "liinkmee.zip" --clobber -R "$REPO_NAME"
 
             # Mark the release as the latest
             gh release edit "${GITHUB_REF##*/}" --title="${GITHUB_REF##*/}" -R "$REPO_NAME"
@@ -142,14 +142,14 @@ jobs:
             token="${{ secrets.MY_GITHUB_TOKEN }}"
 
             # The repository and file path
-            repo="LiinkMeeOrg/LinkStack"
+            repo="LiinkMeeOrg/Liinkmee"
             file_path="version.json"
 
             # Fetch the latest commit's SHA for the file
             sha=$(curl -u "$username:$token" -s "https://api.github.com/repos/$repo/contents/$file_path" | grep -oP '(?<="sha": ")[^"]+')
 
             # Get version from version.json
-            cd /tmp/linkstack
+            cd /tmp/liinkmee
             TAG_VERSION="${GITHUB_REF##*/}"
             version=${TAG_VERSION#"v"}
 
@@ -166,7 +166,7 @@ jobs:
       - name: Upload to Update Server
         if: ${{ github.event_name == 'push' }}
         run: |
-            cd /tmp/linkstack
+            cd /tmp/liinkmee
             ls
             TAG_VERSION="${GITHUB_REF##*/}"
             version=${TAG_VERSION#"v"}

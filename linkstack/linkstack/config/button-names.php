@@ -1,7 +1,7 @@
 <?php
 
 $buttonNames = array(
-    'littlelink-custom' => 'LinkStack',
+    'littlelink-custom' => 'Liinkmee',
     'all-inkl' => 'ALL-INKL',
     'appstore' => 'App Store',
     'apple-books' => 'Apple Books',
@@ -20,7 +20,7 @@ $buttonNames = array(
     'itchio' => 'itch.io',
     'last-fm' => 'last.fm',
     'linkedin' => 'linkedIn',
-    'linkstack' => 'LinkStack',
+    'liinkmee' => 'Liinkmee',
     'openstreetmap' => 'OpenStreetMap',
     'paypal' => 'PayPal',
     'picarto' => 'Picarto',

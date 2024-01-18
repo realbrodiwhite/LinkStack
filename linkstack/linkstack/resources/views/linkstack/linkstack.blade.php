@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 @include('layouts.lang')
 <head>
-   @include('linkstack.modules.meta')
-   @include('linkstack.modules.theme')
-   @stack('linkstack-head')
-   @include('linkstack.modules.assets')
+   @include('liinkmee.modules.meta')
+   @include('liinkmee.modules.theme')
+   @stack('liinkmee-head')
+   @include('liinkmee.modules.assets')
    @foreach($information as $info)
-   @stack('linkstack-head-end')
+   @stack('liinkmee-head-end')
 </head>
 <body>
-   @stack('linkstack-body-start')
-   @include('linkstack.modules.admin-bar')
-   @include('linkstack.modules.share-button')
-   @include('linkstack.modules.report-icon')
+   @stack('liinkmee-body-start')
+   @include('liinkmee.modules.admin-bar')
+   @include('liinkmee.modules.share-button')
+   @include('liinkmee.modules.report-icon')
    <div class="container">
       <div class="row">
          <div class="column" style="margin-top: 5%">
-            @include('linkstack.elements.avatar')
-            @include('linkstack.elements.heading')
-            @include('linkstack.elements.bio')
-            @include('linkstack.elements.icons')
+            @include('liinkmee.elements.avatar')
+            @include('liinkmee.elements.heading')
+            @include('liinkmee.elements.bio')
+            @include('liinkmee.elements.icons')
             @endforeach
-            @include('linkstack.elements.buttons')
-            @include('linkstack.modules.footer')
+            @include('liinkmee.elements.buttons')
+            @include('liinkmee.modules.footer')
          </div>
       </div>
    </div>
-   @stack('linkstack-body-end')
+   @stack('liinkmee-body-end')
 </body>
 </html>

@@ -1280,12 +1280,12 @@ button.button-scribd{
 }
 
 /* LiinkMee */
-.button.button-linkstack {
+.button.button-liinkmee {
   color: #FFFFFF;
   background: #300948;
   background: radial-gradient(circle, #300948 0%, #07051c 80%);
 }
-.button.button-linkstack:hover,
-.button.button-linkstack:focus {
+.button.button-liinkmee:hover,
+.button.button-liinkmee:focus {
   filter: brightness(90%);
 }

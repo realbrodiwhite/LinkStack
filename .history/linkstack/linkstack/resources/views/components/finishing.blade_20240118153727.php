@@ -74,7 +74,7 @@ use App\Models\Page;
             else{EnvEditor::addKey('ADMIN_EMAIL', '');}}
 
             if(env('APP_NAME') == 'LittleLink Custom' or env('APP_NAME') == 'LittleLink') {
-                EnvEditor::editKey('APP_NAME', 'LinkStack');
+                EnvEditor::editKey('APP_NAME', 'Liinkmee');
             }
 
             if (EnvEditor::keyExists('ALLOW_REGISTRATION')) { /* Do nothing if key already exists */ 
@@ -122,15 +122,15 @@ use App\Models\Page;
             $data['page'] = Page::select('contact')->first();
             if (strpos($data['page']->contact, 'info@littlelink-custom.com') !== false or strpos($data['page']->contact, 'LittleLink Custom') !== false) {
             $contact = '
-            <p><strong><a href="https://linkstack.org/">LinkStack</a></strong> is a free, open source&nbsp;link&nbsp;sharing platform. We depend on community feedback to steadily improve this project.</p>
+            <p><strong><a href="https://liinkmee.org/">Liinkmee</a></strong> is a free, open source&nbsp;link&nbsp;sharing platform. We depend on community feedback to steadily improve this project.</p>
             
             <p><strong>Feel free to send us your feedback!</strong></p>
             
             <ul>
-            	<li>Join our <a href="https://discord.linkstack.org/">community Discord</a></li>
+            	<li>Join our <a href="https://discord.liinkmee.org/">community Discord</a></li>
             	<li>Join the <a href="https://github.com/linkstackorg/liinkmee/discussions">discussion forum</a></li>
             	<li>Request a feature and add it to the <a href="https://github.com/linkstackorg/liinkmee/discussions/49">to-do list</a></li>
-            	<li>Write us an <a href="mailto:info@linkstack.org?subject=Inquiry%20about%20LinkStack">email</a></li>
+            	<li>Write us an <a href="mailto:info@liinkmee.org?subject=Inquiry%20about%20LinkStack">email</a></li>
             </ul>
             
             <p>If you&#39;re having any trouble or encountered a bug, feel free to <a href="https://github.com/linkstackorg/liinkmee/issues">open an issue on GitHub</a>.</p>
@@ -144,7 +144,7 @@ use App\Models\Page;
             $data['page'] = Page::select('home_message')->first();
             if (strpos($data['page']->home_message, 'LittleLink Custom') !== false) {
             $home_message = '
-            <p>Take control of your online presence with&nbsp;<a href="https://linkstack.org/"><strong>LinkStack</strong></a> the privacy-focused, open-source <strong>link management platform</strong>. Create a customizable profile page to manage <strong>all your important links in one convenient location</strong> and give your audience a seamless browsing experience.</p>
+            <p>Take control of your online presence with&nbsp;<a href="https://liinkmee.org/"><strong>Liinkmee</strong></a> the privacy-focused, open-source <strong>link management platform</strong>. Create a customizable profile page to manage <strong>all your important links in one convenient location</strong> and give your audience a seamless browsing experience.</p>
             ';
             Page::first()->update(['home_message' => $home_message]);
             }

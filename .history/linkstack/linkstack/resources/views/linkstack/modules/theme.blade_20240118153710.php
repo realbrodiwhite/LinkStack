@@ -45,11 +45,11 @@ $customBackgroundExists = file_exists($customBackgroundPath)
 @endif
 @endif
 
-@push('linkstack-head-end')
+@push('liinkmee-head-end')
 @if(theme('enable_custom_code') == "true" and theme('enable_custom_head') == "true" and env('ALLOW_CUSTOM_CODE_IN_THEMES') == 'true')@include($GLOBALS['themeName'] . '.extra.custom-head')@endif
 @if($info->theme != '' and $info->theme != 'default')
 
-  <!-- LinkStack Theme: "{{$info->theme}}" -->
+  <!-- Liinkmee Theme: "{{$info->theme}}" -->
 
   <!-- Theme details: -->
   <meta name="designer" href="{{ url('') . "/theme/@" . $littlelink_name}}" content="{{ url('') . "/theme/@" . $littlelink_name}}">
@@ -76,7 +76,7 @@ $customBackgroundExists = file_exists($customBackgroundPath)
 <style>.container{word-break: break-word;}</style>
 @endpush
 
-@push('linkstack-body-start')
+@push('liinkmee-body-start')
 @if(theme('enable_custom_code') == "true" and theme('enable_custom_body') == "true" and env('ALLOW_CUSTOM_CODE_IN_THEMES') == 'true')@include($GLOBALS['themeName'] . '.extra.custom-body')@endif
 
 @if($info->theme != '' and $info->theme != 'default')
@@ -101,7 +101,7 @@ $customBackgroundExists = file_exists($customBackgroundPath)
 @endif
 @endpush
 
-@push('linkstack-body-end')
+@push('liinkmee-body-end')
 @if(theme('enable_custom_code') == "true" and theme('enable_custom_body_end') == "true" and env('ALLOW_CUSTOM_CODE_IN_THEMES') == 'true')@include($GLOBALS['themeName'] . '.extra.custom-body-end')@endif
 @endpush
-@include('linkstack.modules.dynamic-contrast')
+@include('liinkmee.modules.dynamic-contrast')

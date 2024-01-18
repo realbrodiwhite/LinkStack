@@ -20,7 +20,7 @@ return [
     'by' => 'من',
 
     'HOME.MESSAGE' => '
-    <p>خذ السيطرة على وجودك عبر الإنترنت مع <a href="https://linkstack.org/"><strong>LinkStack</strong></a>
+    <p>خذ السيطرة على وجودك عبر الإنترنت مع <a href="https://liinkmee.org/"><strong>Liinkmee</strong></a>
      أمنة، مفتوحة المصدر <strong>منصة لإدارة الروابط</strong>. انشاء صفحة ملف تعريفي قابل للتخصيص والإدارة <strong>
      جميع روابطك الهامة في مكان واحد مريح</strong> وتمنح جمهورك تجربة تصفح سلسة.</p>
      ',
@@ -619,7 +619,7 @@ return [
     'The server will never store more that two backups at a time' => 'لن يقوم الخادم بتخزين أكثر من نسختين احتياطيتين في وقت واحد.',
 
     'SMTP.title' => 'استخدام خادم SMTP المدمج',
-    'SMTP.description' => 'يستخدم خادم SMTP المقدم من LinkStack. قد لا يكون موثوقًا بنسبة 100٪. يجب تعطيله لاستخدام خادم SMTP مخصص.',
+    'SMTP.description' => 'يستخدم خادم SMTP المقدم من Liinkmee. قد لا يكون موثوقًا بنسبة 100٪. يجب تعطيله لاستخدام خادم SMTP مخصص.',
     'SMTP.description.alt' => '(قم بحفظ التغييرات باستخدام "تطبيق التغييرات" أدناه)',
     'Enable' => 'تمكين',
     'Custom SMTP server:' => 'خادم SMTP مخصص:',
@@ -688,7 +688,7 @@ return [
     'MAIL_FROM_ADDRESS.title' => 'MAIL_FROM_ADDRESS',
     'MAIL_FROM_ADDRESS.description' => 'MAIL_FROM_ADDRESS',
     'JOIN_BETA.title' => 'انضم إلى برنامج البيتا',
-    'JOIN_BETA.description' => 'يتيح استخدام الإصدارات التجريبية عند التحديث. اقرأ المزيد حول ذلك <a target=\'_blank\' href=\'https://linkstack.org/b\'>هنا</a>.',
+    'JOIN_BETA.description' => 'يتيح استخدام الإصدارات التجريبية عند التحديث. اقرأ المزيد حول ذلك <a target=\'_blank\' href=\'https://liinkmee.org/b\'>هنا</a>.',
     'SKIP_UPDATE_BACKUP.title' => 'تخطي تحديث نسخ الاحتياطي',
     'SKIP_UPDATE_BACKUP.description' => 'يتجاوز عمليات النسخ الاحتياطي عند التحديث. يُنصح بتعطيل هذا الخيار في جميع الأوقات، <br>ولكن قد يتسبب في وجود أخطاء في بعض التكوينات.',
     'CUSTOM_META_TAGS.title' => 'تمكين الوسوم الوصفية المخصصة',
@@ -702,7 +702,7 @@ return [
     'ENABLE_THEME_UPDATER.title' => 'تمكين أداة تحديث القوالب',
     'ENABLE_THEME_UPDATER.description' => 'يحدد ما إذا كان يجب تشغيل أداة تحديث القوالب أم لا.',
     'ENABLE_SOCIAL_LOGIN.title' => 'تمكين تسجيل الدخول عبر الشبكات الاجتماعية',
-    'ENABLE_SOCIAL_LOGIN.description' => 'يتيح تسجيل الدخول عبر الشبكات الاجتماعية. يتطلب هذا الخيار إعدادًا إضافيًا. اقرأ المزيد حول ذلك <a target=\'_blank\' href=\'https://linkstack.org/social-login\'>هنا</a>.',
+    'ENABLE_SOCIAL_LOGIN.description' => 'يتيح تسجيل الدخول عبر الشبكات الاجتماعية. يتطلب هذا الخيار إعدادًا إضافيًا. اقرأ المزيد حول ذلك <a target=\'_blank\' href=\'https://liinkmee.org/social-login\'>هنا</a>.',
     'USE_THEME_PREVIEW_IFRAME.title' => 'استخدام إطار العرض المضمن كمعاينة للقالب',
     'USE_THEME_PREVIEW_IFRAME.description' => 'يحدد ما إذا كان يجب استخدام إطار داخلي مضمن كمعاينة لصفحة القالب.',
     'FORCE_ROUTE_HTTPS.title' => 'إعادة توجيه جميع الصفحات إلى HTTPS',
@@ -751,10 +751,10 @@ return [
     */
 
     # Title Tag
-    'LinkStack setup' => 'إعداد LinkStack',
+    'Liinkmee setup' => 'إعداد Liinkmee',
 
-    'Setup LinkStack' => 'إعداد LinkStack',
-    'Welcome to the setup for LinkStack!' => 'مرحبًا بك في إعداد LinkStack!',
+    'Setup Liinkmee' => 'إعداد Liinkmee',
+    'Welcome to the setup for Liinkmee!' => 'مرحبًا بك في إعداد Liinkmee!',
     'This setup will:' => 'سيقوم هذا الإعداد بـ:',
     'Check the server dependencies' => '1. التحقق من تبعيات الخادم',
     'Setup the database' => '2. إعداد قاعدة البيانات',
@@ -812,7 +812,7 @@ return [
     */
 
     # Title Tag
-    'Update LinkStack' => 'تحديث LinkStack',
+    'Update Liinkmee' => 'تحديث Liinkmee',
 
     'Latest beta version' => 'أحدث إصدار تجريبي',
     'Installed beta version' => 'الإصدار التجريبي المثبت',
@@ -975,10 +975,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | LinkStack (Links) Page
+    | Liinkmee (Links) Page
     |--------------------------------------------------------------------------
     |
-    | resources/views/liinkmee/linkstack.blade.php
+    | resources/views/liinkmee/liinkmee.blade.php
     |
     */
 
@@ -1005,7 +1005,7 @@ return [
     |
     */
 
-    'Learn more about LinkStack' => 'تعرف على المزيد عن LinkStack',
+    'Learn more about Liinkmee' => 'تعرف على المزيد عن Liinkmee',
     'Learn more' => 'تعرف على المزيد',
 
     /*
@@ -1031,14 +1031,14 @@ return [
     # Help Us Out Notification
     'Hide this notification' => 'إخفاء هذا الإشعار',
     'Help Us Out' => 'ساعدنا',
-    'Enjoying Linkstack?' => 'هل تستمتع بـ Linkstack؟',
-    'Support Linkstack' => 'دعم Linkstack',
-    'support.msg1' => 'إذا كنت تستمتع باستخدام Linkstack ، فسنكون ممتنين جدًا إذا استغرقت لحظة لـ',
+    'Enjoying Liinkmee?' => 'هل تستمتع بـ Liinkmee؟',
+    'Support Liinkmee' => 'دعم Liinkmee',
+    'support.msg1' => 'إذا كنت تستمتع باستخدام Liinkmee ، فسنكون ممتنين جدًا إذا استغرقت لحظة لـ',
     'support.msg2' => 'منح مشروعنا نجمة على GitHub',
     'support.msg3' => 'سيساعد دعمكنا على وصول جمهور أوسع وتحسين جودة مشروعنا.',
     'support.msg4' => 'إذا كنت قادرًا على',
-    'support.msg5' => 'المساهمة المالية</a> ، حتى مبلغ صغير سيساعدنا في تغطية تكاليف الحفاظ على Linkstack وتحسينه.',
-    'support.msg6' => 'شكرًا لدعمكم ولكونكم جزءًا من مجتمع LinkStack!',
+    'support.msg5' => 'المساهمة المالية</a> ، حتى مبلغ صغير سيساعدنا في تغطية تكاليف الحفاظ على Liinkmee وتحسينه.',
+    'support.msg6' => 'شكرًا لدعمكم ولكونكم جزءًا من مجتمع Liinkmee!',
 
 
     /*
