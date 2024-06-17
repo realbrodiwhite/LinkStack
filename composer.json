@@ -22,7 +22,7 @@
         "spatie/laravel-backup": "^8.5.1"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.12",
+        "barryvdh/laravel-ide-helper": "^3.0",
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/common": "^6.1.0",
         "laravel/breeze": "^1.1",
