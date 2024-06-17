@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "efb1317bfb040cb494e38900d4d3052f",
+    "content-hash": "c105fd87aaa271a89ce9f51c450012c6",
+    "content-hash2": "efb1317bfb040cb494e38900d4d3052f",
     "packages": [
         {
             "name": "awssat/laravel-visits",
@@ -1012,6 +1013,7 @@
             "support": {
                 "issues": "https://github.com/doctrine/inflector/issues",
                 "source": "https://github.com/doctrine/inflector/tree/2.0.10"
+
             },
             "funding": [
                 {
@@ -8306,10 +8308,10 @@
                 "php": "^8.1"
             },
             "require-dev": {
-                "larastan/larastan": "^2.4",
-                "orchestra/testbench": "^8.0",
-                "pestphp/pest": "^2.0",
-                "pestphp/pest-plugin-laravel": "^2.0"
+                "nunomaduro/larastan": "^1.0|^2.4",
+                "orchestra/testbench": "^6.9|^7.0|^8.0",
+                "pestphp/pest": "^1.2|^2.0",
+                "pestphp/pest-plugin-laravel": "^1.0|^2.0"
             },
             "type": "library",
             "autoload": {
@@ -8330,9 +8332,9 @@
             "description": "Helpers for making PHP enums more lovable.",
             "support": {
                 "issues": "https://github.com/archtechx/enums/issues",
-                "source": "https://github.com/archtechx/enums/tree/v1.0.1"
+                "source": "https://github.com/archtechx/enums/tree/v0.3.2"
             },
-            "time": "2024-01-28T17:52:47+00:00"
+            "time": "2023-02-15T13:05:41+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -9203,6 +9205,7 @@
         },
         {
             "name": "laravel-lang/attributes",
+
             "version": "2.10.7",
             "source": {
                 "type": "git",
@@ -9339,6 +9342,7 @@
                 "laravel",
                 "locale",
                 "locales",
+
                 "localization",
                 "localizations",
                 "nova",
@@ -9909,6 +9913,13 @@
                 "symfony/var-dumper": "^6.3 || ^7.0"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LaravelLang\\Lang\\ServiceProvider"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "LaravelLang\\NativeLocaleNames\\": "src/"
@@ -9994,6 +10005,9 @@
                 }
             },
             "autoload": {
+                "files": [
+                    "helper.php"
+                ],
                 "psr-4": {
                     "LaravelLang\\Publisher\\": "src/"
                 }

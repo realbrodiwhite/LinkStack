@@ -2,7 +2,7 @@
 
 function findFile($name)
 {
-    $directory = base_path("/assets/linkstack/images/");
+    $directory = base_path("/assets/liinkmee/images/");
     $files = scandir($directory);
     $pathinfo = "error.error";
     $pattern = '/^' . preg_quote($name, '/') . '(_\w+)?\.\w+$/i';
