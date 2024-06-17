@@ -104,40 +104,10 @@ Customize the look of your LiinkMee instance with themes. Themes allow you to ch
 Contribute by designing your own themes. You can read more about contributing below.
 </p>
     
-<br>
-
-|![preview1](https://raw.githubusercontent.com/LiinkMeeOrg/stargazer/main/preview.png) |![preview2](https://raw.githubusercontent.com/LiinkMeeOrg/Magic-Kingdom/main/preview.png)|
-| ------------- |-------------|
-|![preview3](https://raw.githubusercontent.com/LiinkMeeOrg/polygon/main/preview.png)|![preview4](https://raw.githubusercontent.com/LiinkMeeOrg/PolySleek/main/preview.png)|  
-
-<br>
-
-You can find all available Themes on here:
-[linkstack.org/themes](https://linkstack.org/themes)
-
-
-<br>
-
-### How to add themes
-#### How to add themes to your LinkStack instance
-You can add your downloaded themes to your LiinkMee instance on the Admin Panel. Navigate to the 'Themes' tab and scroll to the bottom of the page.
-
-Now click on Choose file and select your downloaded theme zip file. Now click on 'Upload theme' and you should be able to select your uploaded theme now.
-
-<br><br>
-
-### **Themes are envisioned to be made by users for users.**
-
-If you know a bit about CSS, consider making your own theme and adding it to the public directory.
-Everything is documented in the dedicated GitHub repository.
-
-[github.com/LiinkMeeOrg/linkstack-themes/tree/main/contributing](https://github.com/LiinkMeeOrg/linkstack-themes/tree/main/contributing)
-
-<a name="Installation"></a>
-## Installation
-
+<br> 
 ### Downloading and installing steps:
-* **[Download](https://github.com/linkstackorg/liinkmee/releases)** the latest release of LiinkMee and simply place the folder 'littlelink' or the contents of this folder in the root directory of your website.
+
+[Download](https://github.com/linkstackorg/linkstack/releases)** the latest release of LinkStack and simply place the folder 'linkstack' or the contents of this folder in the root directory of your website.
 
 ### That's it! No coding no command line setup just plug and play.
 

@@ -199,6 +199,9 @@ class UserController extends Controller
     //Save add link
     public function saveLink(request $request)
     {
+        $request->validate([
+            'link' => 'sometimes|exturl',
+        ]);
 
         $linkType = LinkType::find($request->linktype_id);
         $LinkTitle = ($request->link_text ?? $request->link_title) ?? $request->title;
@@ -261,19 +264,21 @@ class UserController extends Controller
                         'button_id' => "42",
                     ]);
                 }elseif($linkType->typename == "text"){
+                    $sanitizedText = $request->text;
+                    $sanitizedText = strip_tags($sanitizedText, '<a><p><strong><i><ul><ol><li><blockquote><h2><h3><h4>');
+                    $sanitizedText = preg_replace("/<a([^>]*)>/i", "<a $1 rel=\"noopener noreferrer nofollow\">", $sanitizedText);
+                    $sanitizedText = strip_tags_except_allowed_protocols($sanitizedText);
                     $OrigLink->update([
                         'button_id' => "93",
-                        'title' => $request->text,
+                        'title' => $sanitizedText,
                     ]);
                 }elseif($linkType->typename == "email"){
-                    $LinkURL = "mailto:".$LinkURL;
                     $OrigLink->update([
                         'link' => $LinkURL,
                         'button_id' => $button?->id,
                         'title' => $LinkTitle,
                     ]);
                 }elseif($linkType->typename == "telephone"){
-                    $LinkURL = "tel:".$LinkURL;
                     $OrigLink->update([
                         'link' => $LinkURL,
                         'button_id' => $button?->id,
@@ -384,13 +389,15 @@ class UserController extends Controller
             }elseif($linkType->typename == "heading"){
                 $links->button_id = "42";
             }elseif($linkType->typename == "text"){
+                $sanitizedText = $request->text;
+                $sanitizedText = strip_tags($sanitizedText, '<a><p><strong><i><ul><ol><li><blockquote><h2><h3><h4>');
+                $sanitizedText = preg_replace("/<a([^>]*)>/i", "<a $1 rel=\"noopener noreferrer nofollow\">", $sanitizedText);
+                $sanitizedText = strip_tags_except_allowed_protocols($sanitizedText);
                 $links->button_id = "93";
-                $links->title = $request->text;
+                $links->title = $sanitizedText;
             }elseif($linkType->typename == "email"){
-                $links->link = "mailto:".$links->link;
                 $links->button_id = $button?->id;
             }elseif($linkType->typename == "telephone"){
-                $links->link = "tel:".$links->link;
                 $links->button_id = $button?->id;
             }elseif($linkType->typename == "vcard"){
 
@@ -465,7 +472,7 @@ class UserController extends Controller
             }
 
             if(empty($links->button_id)) {
-                return redirect(route('showButtons')); die;
+                throw new \Exception('Invalid link');
             }
             
             $links->save();
@@ -704,7 +711,7 @@ class UserController extends Controller
     public function editLink(request $request)
     {
         $request->validate([
-            'link' => 'required',
+            'link' => 'required|exturl',
             'title' => 'required',
             'button' => 'required',
         ]);
@@ -786,6 +793,7 @@ class UserController extends Controller
         $pageName = $request->littlelink_name;
         $pageDescription = strip_tags($request->pageDescription, '<a><p><strong><i><ul><ol><li><blockquote><h2><h3><h4>');
         $pageDescription = preg_replace("/<a([^>]*)>/i", "<a $1 rel=\"noopener noreferrer nofollow\">", $pageDescription);
+        $pageDescription = strip_tags_except_allowed_protocols($pageDescription);
         $name = $request->name;
         $checkmark = $request->checkmark;
         $sharebtn = $request->sharebtn;
@@ -802,6 +810,13 @@ class UserController extends Controller
         ]);
     
         if ($request->hasFile('image')) {
+
+            // Delete the user's current avatar if it exists
+            while (findAvatar($userId) !== "error.error") {
+                $avatarName = findAvatar($userId);
+                unlink(base_path($avatarName));
+            }
+            
             $fileName = $userId . '_' . time() . "." . $profilePhoto->extension();
             $profilePhoto->move(base_path('assets/img'), $fileName);
         }
@@ -854,10 +869,12 @@ class UserController extends Controller
                 }
             }
     
-            if (file_exists(base_path('assets/img/background-img/') . $pathinfo)) {
-                File::delete(base_path('assets/img/background-img/') . $pathinfo);
+            // Delete the user's current background image if it exists
+            while (findBackground($userId) !== "error.error") {
+                $avatarName = "assets/img/background-img/" . findBackground(Auth::id());
+                unlink(base_path($avatarName));
             }
-    
+                
             $fileName = $userId . '_' . time() . "." . $customBackground->extension();
             $customBackground->move(base_path('assets/img/background-img/'), $fileName);
     
@@ -877,13 +894,12 @@ class UserController extends Controller
     //Delete custom background image
     public function removeBackground()
     {
+        $userId = Auth::user()->id;
 
-        $user_id = Auth::user()->id;
-        $path = findBackground($user_id);
-        $path = base_path('assets/img/background-img/'.$path);
-        
-        if (File::exists($path)) {
-            File::delete($path);
+        // Delete the user's current background image if it exists
+        while (findBackground($userId) !== "error.error") {
+            $avatarName = "assets/img/background-img/" . findBackground(Auth::id());
+            unlink(base_path($avatarName));
         }
 
         return back();
@@ -1034,11 +1050,12 @@ class UserController extends Controller
     //Delete profile picture
     public function delProfilePicture()
     {
-        $user_id = Auth::user()->id;
-        $path = base_path(findAvatar($user_id));
-        
-        if (File::exists($path)) {
-            File::delete($path);
+        $userId = Auth::user()->id;
+
+        // Delete the user's current avatar if it exists
+        while (findAvatar($userId) !== "error.error") {
+            $avatarName = findAvatar($userId);
+            unlink(base_path($avatarName));
         }
 
         return back();
@@ -1084,17 +1101,6 @@ class UserController extends Controller
     
         $userData = $user->toArray();
         $userData['links'] = $links->toArray();
-    
-        function findAvatar($name){
-            $directory = base_path('assets/img');
-            $files = scandir($directory);
-            $pathinfo = "error.error";
-            foreach($files as $file) {
-            if (strpos($file, $name.'.') !== false) {
-            $pathinfo = "/img/" . $name. "." . pathinfo($file, PATHINFO_EXTENSION);
-            }}
-            return $pathinfo;
-          }
 
         if (file_exists(base_path(findAvatar($userId)))){
             $imagePath = base_path(findAvatar($userId));
@@ -1133,23 +1139,39 @@ class UserController extends Controller
             if (isset($userData['name'])) {
                 $user->name = $userData['name'];
             }
-            if (isset($userData['littlelink_name'])) {
-                $user->littlelink_name = $userData['littlelink_name'];
-            }
+
             if (isset($userData['littlelink_description'])) {
-                $user->littlelink_description = $userData['littlelink_description'];
+                $sanitizedText = $userData['littlelink_description'];
+                $sanitizedText = strip_tags($sanitizedText, '<a><p><strong><i><ul><ol><li><blockquote><h2><h3><h4>');
+                $sanitizedText = preg_replace("/<a([^>]*)>/i", "<a $1 rel=\"noopener noreferrer nofollow\">", $sanitizedText);
+                $sanitizedText = strip_tags_except_allowed_protocols($sanitizedText);
+                $user->littlelink_description = $sanitizedText;
             }
+
             if (isset($userData['image_data'])) {
+
+                $allowedExtensions = array('jpeg', 'jpg', 'png', 'webp');
+                $userExtension = strtolower($userData['image_extension']);
+
+                if (in_array($userExtension, $allowedExtensions)) {
                 // Decode the image data from Base64
                 $imageData = base64_decode($userData['image_data']);
+
+                // Delete the user's current avatar if it exists
+                while (findAvatar(Auth::id()) !== "error.error") {
+                    $avatarName = findAvatar(Auth::id());
+                    unlink(base_path($avatarName));
+                }
                 
                 // Save the image to the correct path with the correct file name and extension
-                $filename = $user->id . '.' . $userData['image_extension'];
-                file_put_contents(base_path('img/' . $filename), $imageData);
+                $filename = $user->id . '.' . $userExtension;
+                file_put_contents(base_path('assets/img/' . $filename), $imageData);
                 
                 // Update the user's image field with the correct file name
                 $user->image = $filename;
+                }
             }
+
             $user->save();
     
             // Delete all links for the authenticated user
@@ -1157,14 +1179,34 @@ class UserController extends Controller
     
             // Loop through each link in $userData and create a new link for the user
             foreach ($userData['links'] as $linkData) {
+
+                $validatedData = Validator::make($linkData, [
+                    'link' => 'nullable|exturl',
+                ]);
+
+                if ($validatedData->fails()) {
+                    throw new \Exception('Invalid link');
+                }
+
                 $newLink = new Link();
     
                 // Copy over the link data from $linkData to $newLink
                 $newLink->button_id = $linkData['button_id'];
                 $newLink->link = $linkData['link'];
-                $newLink->title = $linkData['title'];
+                
+                // Sanitize the title
+                if ($linkData['button_id'] == 93) {
+                    $sanitizedText = strip_tags($linkData['title'], '<a><p><strong><i><ul><ol><li><blockquote><h2><h3><h4>');
+                    $sanitizedText = preg_replace("/<a([^>]*)>/i", "<a $1 rel=\"noopener noreferrer nofollow\">", $sanitizedText);
+                    $sanitizedText = strip_tags_except_allowed_protocols($sanitizedText);
+                
+                    $newLink->title = $sanitizedText;
+                } else {
+                    $newLink->title = $linkData['title'];
+                }
+
                 $newLink->order = $linkData['order'];
-                $newLink->click_number = $linkData['click_number'];
+                $newLink->click_number = 0;
                 $newLink->up_link = $linkData['up_link'];
                 $newLink->custom_css = $linkData['custom_css'];
                 $newLink->custom_icon = $linkData['custom_icon'];
@@ -1175,7 +1217,6 @@ class UserController extends Controller
                 // Save the new link to the database
                 $newLink->save();
             }
-    
             return redirect('studio/profile')->with('success', __('messages.Profile updated successfully!'));
         } catch (\Exception $e) {
             return redirect('studio/profile')->with('error', __('messages.An error occurred while updating your profile.'));
@@ -1198,25 +1239,46 @@ class UserController extends Controller
     }
 
     //Edit/save page icons
-    public function editIcons(request $request)
+    public function editIcons(Request $request)
     {
+        $inputKeys = array_keys($request->except('_token'));
 
-        function searchIcon($icon)
-        {
-            $iconId = DB::table('links')
+        $validationRules = [];
+
+        foreach ($inputKeys as $platform) {
+            $validationRules[$platform] = 'nullable|exturl|max:255';
+        }
+
+        $request->validate($validationRules);
+
+        foreach ($inputKeys as $platform) {
+            $link = $request->input($platform);
+
+            if (!empty($link)) {
+                $iconId = $this->searchIcon($platform);
+
+                if (!is_null($iconId)) {
+                    $this->updateIcon($platform, $link);
+                } else {
+                    $this->addIcon($platform, $link);
+                }
+            }
+        }
+
+        return redirect('studio/links#icons');
+    }
+
+    private function searchIcon($icon)
+    {
+        return DB::table('links')
             ->where('user_id', Auth::id())
             ->where('title', $icon)
             ->where('button_id', 94)
             ->value('id');
-        
-        if (is_null($iconId)){
-            return false;
-        } else {
-            return $iconId;
-        }
-        }
+    }
 
-        function addIcon($icon, $link){
+    private function addIcon($icon, $link)
+    {
         $userId = Auth::user()->id;
         $links = new Link;
         $links->link = $link;
@@ -1228,61 +1290,12 @@ class UserController extends Controller
         $links->save();
     }
 
-        function updateIcon($icon, $link){
-        Link::where('id', searchIcon($icon))->update([
+    private function updateIcon($icon, $link)
+    {
+        Link::where('id', $this->searchIcon($icon))->update([
             'button_id' => 94,
             'link' => $link,
             'title' => $icon
         ]);
     }
-
-    function saveIcon($icon, $link){
-    if(isset($link)){
-        if(searchIcon($icon) != NULL){
-            updateIcon($icon, $link);
-        }else{
-            addIcon($icon, $link);}
-    }   
-}
-
-
-
-
-    saveIcon('mastodon', $request->mastodon);
-
-    saveIcon('instagram', $request->instagram);
-
-    saveIcon('twitter', $request->twitter);
-
-    saveIcon('facebook', $request->facebook);
-
-    saveIcon('github', $request->github);
-
-    saveIcon('linkedin', $request->linkedin);
-
-    saveIcon('tiktok', $request->tiktok);
-
-    saveIcon('discord', $request->discord);
-
-    saveIcon('youtube', $request->youtube);
-
-    saveIcon('snapchat', $request->snapchat);
-
-    saveIcon('reddit', $request->reddit);
-
-    saveIcon('pinterest', $request->pinterest);
-
-    saveIcon('telegram', $request->telegram);
-
-    saveIcon('whatsapp', $request->whatsapp);
-
-    saveIcon('twitch', $request->twitch);
-
-
-
-
-        return Redirect('studio/links#icons');
-
-    }
-
 }
